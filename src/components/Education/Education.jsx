@@ -7,7 +7,7 @@ const Education = () => {
   return (
     <section
       id="education"
-      className="py-24 px-[7vw] lg:px-[14vw] font-sans bg-skills-gradient clip-path-custom-3"
+      className="py-24 px-4 md:px-[7vw] lg:px-[14vw] font-sans bg-skills-gradient clip-path-custom-3"
     >
       {/* Heading */}
       <div className="text-center mb-20">
@@ -48,15 +48,15 @@ const Education = () => {
 
             {/* Card */}
             <div className="ml-16 md:ml-0 md:w-1/2 md:px-10">
-              <div className="group bg-[#111827]/90 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-6 transition-all duration-500 hover:-translate-y-2 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(130,69,236,0.35)]">
+              <div className="group bg-[#111827]/90 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-5 sm:p-6 transition-all duration-500 hover:-translate-y-2 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(130,69,236,0.35)]">
 
                 {/* Top */}
-                <div className="flex items-center gap-5">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 text-center sm:text-left">
 
                   <img
                     src={edu.img}
                     alt={edu.school}
-                    className="w-16 h-16 rounded-xl bg-white object-contain p-2"
+                    className="w-16 h-16 shrink-0 rounded-xl bg-white object-contain p-2"
                   />
 
                   <div>
@@ -69,7 +69,7 @@ const Education = () => {
                       {edu.school}
                     </p>
 
-                    <div className="flex items-center gap-2 text-gray-400 text-sm mt-2">
+                    <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-400 text-sm mt-2">
                       <FaCalendarAlt />
                       {edu.date}
                     </div>
@@ -79,7 +79,7 @@ const Education = () => {
                 </div>
 
                 {/* Grade */}
-                <div className="mt-5 flex items-center gap-2">
+                <div className="mt-5 flex items-center justify-center sm:justify-start gap-2">
                   <FaStar className="text-yellow-400" />
 
                   <span className="text-white font-medium">
@@ -92,7 +92,7 @@ const Education = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-400 leading-7 mt-5">
+                <p className="text-gray-400 leading-7 mt-5 text-center sm:text-left">
                   {edu.desc}
                 </p>
 
