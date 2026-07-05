@@ -18,7 +18,7 @@ const Work = () => {
   return (
     <section
       id="work"
-      className="py-24 px-[7vw] lg:px-[14vw] font-sans relative"
+      className="py-24 px-4 md:px-[7vw] lg:px-[14vw] font-sans relative"
     >
       {/* Section Heading */}
       <div className="text-center mb-16">
@@ -85,11 +85,11 @@ const Work = () => {
       {selectedProject && (
         <div
           onClick={handleCloseModal}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-5"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#111827] border border-purple-500/20 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-[fadeIn_.3s_ease]"
+            className="bg-[#111827] border border-purple-500/20 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-[fadeIn_.3s_ease] my-8"
           >
             {/* Close Button */}
             <div className="flex justify-end p-5">
@@ -102,7 +102,7 @@ const Work = () => {
             </div>
 
             {/* Image */}
-            <div className="px-6">
+            <div className="px-4 sm:px-6">
               <img
                 src={selectedProject.image}
                 alt={selectedProject.title}
@@ -111,7 +111,7 @@ const Work = () => {
             </div>
 
             {/* Content */}
-            <div className="p-8">
+            <div className="p-5 sm:p-8">
               <h3 className="text-3xl font-bold text-white mb-5">
                 {selectedProject.title}
               </h3>
