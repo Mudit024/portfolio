@@ -1,111 +1,96 @@
-
 import React from "react";
 import { education } from "../../constants";
-import { FaGraduationCap, FaCalendarAlt, FaStar } from "react-icons/fa";
+import { FaGraduationCap, FaCalendarAlt, FaStar, FaMapMarkerAlt } from "react-icons/fa";
 
 const Education = () => {
   return (
     <section
       id="education"
-      className="py-24 px-4 md:px-[7vw] lg:px-[14vw] font-sans bg-skills-gradient clip-path-custom-3"
+      className="py-20 px-4 sm:px-8 md:px-[7vw] lg:px-[12vw] font-sans relative"
     >
       {/* Heading */}
-      <div className="text-center mb-20">
-        <h2 className="text-4xl font-bold text-white">EDUCATION</h2>
-
-        <div className="w-28 h-1 bg-[#8245ec] rounded-full mx-auto mt-4"></div>
-
-        <p className="text-gray-400 mt-6 max-w-3xl mx-auto text-lg leading-8">
-          My academic journey has helped me build a strong foundation in
-          computer science, software engineering, and problem solving while
-          continuously exploring modern technologies.
+      <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          ACADEMIC <span className="gradient-text">EDUCATION</span>
+        </h2>
+        <div className="w-24 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 mx-auto mt-3 rounded-full"></div>
+        <p className="text-gray-400 mt-4 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          My academic foundation in Computer Science, Software Engineering, Data Structures, and System Design.
         </p>
       </div>
 
       {/* Timeline */}
-      <div className="relative">
+      <div className="relative max-w-4xl mx-auto">
+        {/* Central Vertical Line */}
+        <div className="absolute left-6 md:left-1/2 top-0 h-full w-[2px] bg-gradient-to-b from-purple-500 via-indigo-500 to-purple-900 transform md:-translate-x-1/2"></div>
 
-        {/* Vertical Line */}
-        <div className="absolute left-5 md:left-1/2 top-0 h-full w-[3px] bg-gradient-to-b from-[#8245ec] to-purple-900 transform md:-translate-x-1/2"></div>
+        <div className="space-y-12">
+          {education.map((edu, index) => (
+            <div
+              key={edu.id}
+              className={`relative flex flex-col md:flex-row items-start ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
+            >
+              {/* Timeline Icon Node */}
+              <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 border-4 border-[#050414] flex items-center justify-center z-20 shadow-[0_0_15px_rgba(130,69,236,0.6)]">
+                <FaGraduationCap className="text-white text-lg" />
+              </div>
 
-        {education.map((edu, index) => (
-          <div
-            key={edu.id}
-            className={`relative flex items-center mb-16 ${
-              index % 2 === 0
-                ? "md:flex-row"
-                : "md:flex-row-reverse"
-            }`}
-          >
+              {/* Desktop Spacer */}
+              <div className="hidden md:block md:w-1/2"></div>
 
-            {/* Timeline Icon */}
-            <div className="absolute left-5 md:left-1/2 transform -translate-x-1/2 w-14 h-14 rounded-full bg-[#8245ec] border-4 border-gray-900 flex items-center justify-center z-20 shadow-lg">
-              <FaGraduationCap className="text-white text-xl" />
-            </div>
-
-            {/* Spacer */}
-            <div className="hidden md:block md:w-1/2"></div>
-
-            {/* Card */}
-            <div className="ml-16 md:ml-0 md:w-1/2 md:px-10">
-              <div className="group bg-[#111827]/90 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-5 sm:p-6 transition-all duration-500 hover:-translate-y-2 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(130,69,236,0.35)]">
-
-                {/* Top */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 text-center sm:text-left">
-
-                  <img
-                    src={edu.img}
-                    alt={edu.school}
-                    className="w-16 h-16 shrink-0 rounded-xl bg-white object-contain p-2"
-                  />
-
-                  <div>
-
-                    <h3 className="text-xl font-bold text-white">
-                      {edu.degree}
-                    </h3>
-
-                    <p className="text-[#8245ec] font-medium mt-1">
-                      {edu.school}
-                    </p>
-
-                    <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-400 text-sm mt-2">
-                      <FaCalendarAlt />
-                      {edu.date}
+              {/* Card Container */}
+              <div className="pl-14 md:pl-0 md:w-1/2 md:px-8 w-full">
+                <div className="group bg-gray-900/60 backdrop-blur-xl border border-purple-500/20 rounded-3xl p-6 transition-all duration-500 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(130,69,236,0.25)] hover:-translate-y-1">
+                  {/* Top Info */}
+                  <div className="flex items-start space-x-4 mb-4">
+                    <img
+                      src={edu.img}
+                      alt={edu.school}
+                      className="w-14 h-14 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md border border-purple-500/20"
+                    />
+                    <div>
+                      <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                        {edu.degree}
+                      </h3>
+                      <p className="text-purple-400 font-semibold text-sm mt-0.5">
+                        {edu.school}
+                      </p>
+                      {edu.location && (
+                        <p className="text-gray-400 text-xs flex items-center space-x-1 mt-1">
+                          <FaMapMarkerAlt className="text-purple-400 text-[10px]" />
+                          <span>{edu.location}</span>
+                        </p>
+                      )}
                     </div>
-
                   </div>
 
+                  {/* Date & Grade Badges */}
+                  <div className="flex flex-wrap items-center gap-3 my-3">
+                    <div className="inline-flex items-center space-x-1.5 bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-semibold px-3 py-1 rounded-full">
+                      <FaCalendarAlt className="text-[10px]" />
+                      <span>{edu.date}</span>
+                    </div>
+
+                    <div className="inline-flex items-center space-x-1.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-bold px-3 py-1 rounded-full">
+                      <FaStar className="text-[10px]" />
+                      <span>Grade: {edu.grade}</span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-300 text-sm leading-relaxed mt-4">
+                    {edu.desc}
+                  </p>
                 </div>
-
-                {/* Grade */}
-                <div className="mt-5 flex items-center justify-center sm:justify-start gap-2">
-                  <FaStar className="text-yellow-400" />
-
-                  <span className="text-white font-medium">
-                    Grade:
-                  </span>
-
-                  <span className="text-gray-300">
-                    {edu.grade}
-                  </span>
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-400 leading-7 mt-5 text-center sm:text-left">
-                  {edu.desc}
-                </p>
-
               </div>
             </div>
-
-          </div>
-        ))}
-
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
 export default Education;
-

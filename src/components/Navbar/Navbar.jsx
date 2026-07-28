@@ -1,30 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("about");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Detect scroll and change navbar background
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
+
+      const sections = ["about", "skills", "experience", "work", "education", "contact"];
+      const scrollPosition = window.scrollY + 120;
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll function
   const handleMenuItemClick = (sectionId) => {
     setActiveSection(sectionId);
     setIsOpen(false);
 
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      const yOffset = -80;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
@@ -34,111 +49,122 @@ const Navbar = () => {
     { id: "experience", label: "Experience" },
     { id: "work", label: "Projects" },
     { id: "education", label: "Education" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition duration-300 px-4 md:px-[7vw] lg:px-[20vw] ${
-        isScrolled ? "bg-[#050414] bg-opacity-50 backdrop-blur-md shadow-md" : "bg-transparent"
+      className={`fixed top-0 w-full z-50 transition-all duration-500 px-4 md:px-[7vw] lg:px-[12vw] ${
+        isScrolled
+          ? "py-3 bg-[#050414]/80 backdrop-blur-xl border-b border-purple-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+          : "py-6 bg-transparent"
       }`}
     >
-      <div className="text-white py-5 flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-lg font-semibold cursor-pointer">
-          <span className="text-[#8245ec]">&lt;</span>
-          <span className="text-white">Mudit</span>
-          <span className="text-[#8245ec]">/</span>
-          <span className="text-white">Jawara</span>
-          <span className="text-[#8245ec]">&gt;</span>
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        {/* Brand Logo */}
+        <div
+          onClick={() => handleMenuItemClick("about")}
+          className="group flex items-center space-x-2 text-xl font-extrabold cursor-pointer tracking-tight"
+        >
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center shadow-[0_0_15px_rgba(130,69,236,0.5)] group-hover:scale-110 transition-transform duration-300">
+            <FaCode className="text-white text-base" />
+          </div>
+          <div className="font-sans">
+            <span className="text-purple-400">&lt;</span>
+            <span className="text-white group-hover:text-purple-300 transition-colors">Mudit</span>
+            <span className="gradient-text">.Jawara</span>
+            <span className="text-purple-400">/&gt;</span>
+          </div>
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-gray-300">
+        <div className="hidden md:flex items-center space-x-1 bg-gray-900/60 border border-purple-500/20 backdrop-blur-md px-4 py-1.5 rounded-full shadow-inner">
           {menuItems.map((item) => (
-            <li
+            <button
               key={item.id}
-              className={`cursor-pointer hover:text-[#8245ec] ${
-                activeSection === item.id ? "text-[#8245ec]" : ""
+              onClick={() => handleMenuItemClick(item.id)}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 ${
+                activeSection === item.id
+                  ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(130,69,236,0.5)]"
+                  : "text-gray-300 hover:text-white hover:bg-purple-950/40"
               }`}
             >
-              <button onClick={() => handleMenuItemClick(item.id)}>
-                {item.label}
-              </button>
-            </li>
+              {item.label}
+            </button>
           ))}
-        </ul>
+        </div>
 
-        {/* Social Icons */}
-        <div className="hidden md:flex space-x-4">
+        {/* Social Icons & CTA */}
+        <div className="hidden md:flex items-center space-x-3">
           <a
             href="https://github.com/Mudit024"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#8245ec]"
+            className="p-2.5 bg-gray-900/80 border border-purple-500/20 rounded-full text-gray-300 hover:text-white hover:border-purple-500 hover:scale-110 transition-all shadow-md"
+            aria-label="GitHub Profile"
           >
-            <FaGithub size={24} />
+            <FaGithub size={17} />
           </a>
           <a
             href="https://www.linkedin.com/in/mudit-jawara/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#8245ec]"
+            className="p-2.5 bg-gray-900/80 border border-purple-500/20 rounded-full text-gray-300 hover:text-[#0077b5] hover:border-purple-500 hover:scale-110 transition-all shadow-md"
+            aria-label="LinkedIn Profile"
           >
-            <FaLinkedin size={24} />
+            <FaLinkedin size={17} />
           </a>
         </div>
 
-        {/* Mobile Menu Icon */}
+        {/* Mobile Menu Hamburger */}
         <div className="md:hidden">
-          {isOpen ? (
-            <FiX
-              className="text-3xl text-[#8245ec] cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            />
-          ) : (
-            <FiMenu
-              className="text-3xl text-[#8245ec] cursor-pointer"
-              onClick={() => setIsOpen(true)}
-            />
-          )}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2.5 bg-gray-900/80 border border-purple-500/30 rounded-2xl text-purple-300 hover:text-white focus:outline-none"
+            aria-label="Toggle Navigation Menu"
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu Items */}
+      {/* Mobile Drawer */}
       {isOpen && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414] bg-opacity-50 backdrop-filter backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden">
-          <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
+        <div className="md:hidden mt-3 bg-[#0d081f]/95 border border-purple-500/30 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl animate-[fadeIn_0.2s_ease-out]">
+          <ul className="flex flex-col space-y-3">
             {menuItems.map((item) => (
-              <li
-                key={item.id}
-                className={`cursor-pointer hover:text-white ${
-                  activeSection === item.id ? "text-[#8245ec]" : ""
-                }`}
-              >
-                <button onClick={() => handleMenuItemClick(item.id)}>
+              <li key={item.id}>
+                <button
+                  onClick={() => handleMenuItemClick(item.id)}
+                  className={`w-full text-left px-5 py-3 rounded-2xl text-sm font-semibold transition-all ${
+                    activeSection === item.id
+                      ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold shadow-md"
+                      : "text-gray-300 hover:bg-gray-800/60 hover:text-white"
+                  }`}
+                >
                   {item.label}
                 </button>
               </li>
             ))}
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/Mudit024"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/mudit-jawara/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaLinkedin size={24} />
-              </a>
-            </div>
           </ul>
+          <div className="flex justify-center space-x-6 pt-5 mt-4 border-t border-purple-500/15">
+            <a
+              href="https://github.com/Mudit024"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white"
+            >
+              <FaGithub size={22} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/mudit-jawara/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-[#0077b5]"
+            >
+              <FaLinkedin size={22} />
+            </a>
+          </div>
         </div>
       )}
     </nav>
