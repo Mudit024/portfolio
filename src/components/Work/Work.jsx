@@ -11,7 +11,7 @@ const Work = () => {
   const filteredProjects =
     activeCategory === "All"
       ? projects
-      : projects.filter((p) => p.category === activeCategory);
+      : projects.filter((p) => p.category.toLowerCase().includes(activeCategory.toLowerCase()));
 
   const handleOpenModal = (project) => {
     setSelectedProject(project);

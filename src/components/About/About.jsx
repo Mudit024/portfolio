@@ -120,7 +120,7 @@ const About = () => {
         </div>
 
         {/* Right Side: Profile Image with Parallax & Floating Tech Badges */}
-        <div className="w-full lg:w-2/5 flex justify-center">
+        <div className="w-full lg:w-2/5 flex justify-center items-center mt-4 lg:mt-0">
           <Tilt
             tiltMaxAngleX={12}
             tiltMaxAngleY={12}
@@ -138,7 +138,7 @@ const About = () => {
               <img
                 src={profileImage}
                 alt={bioInfo.name}
-                className="w-full h-full object-cover rounded-full bg-[#050414]"
+                className="w-full h-full object-cover object-[center_30%] rounded-full bg-[#050414]"
               />
 
               {/* Floating Badge Top Left */}

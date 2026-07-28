@@ -47,6 +47,9 @@ import vpsLogo from "./assets/education_logo/vps_logo.jpg";
 import githubdetLogo from "./assets/work_logo/p1.png";
 import csprepLogo from "./assets/work_logo/p2.jpeg";
 import movierecLogo from "./assets/work_logo/p3.png";
+import webverLogo from "./assets/work_logo/p6.png";
+import imagesearchLogo from "./assets/work_logo/p5.png";
+import newsappLogo from "./assets/work_logo/p4.png";
 
 // BIO STATS & INFO
 export const bioInfo = {
@@ -257,5 +260,80 @@ export const projects = [
     ],
     github: "https://github.com/Softablitz25/Filerakshak123",
     webapp: "https://github.com/Softablitz25/Filerakshak123",
+  },
+  {
+    id: 3,
+    title: "Rentify",
+    category: "Full Stack",
+    description:
+      "Rentify is a full-stack MERN car rental platform that enables users to browse, book, and manage vehicle rentals seamlessly. It features secure authentication, role-based access, booking management, and an intuitive responsive interface.",
+    features: [
+      "JWT Authentication & Role-Based Authorization",
+      "Car Booking & Rental Management System",
+      "Admin Dashboard for Vehicle & Booking Management",
+      "Responsive MERN Stack Application",
+    ],
+    image: newsappLogo,
+    tags: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Tailwind CSS",
+    ],
+    github: "https://github.com/Mudit024/Rentify",
+    webapp: "https://rentify-demo.vercel.app",
+  },
+  {
+    id: 4,
+    title: "TalentIQ",
+    category: "Full Stack",
+    description:
+      "TalentIQ is an AI-powered recruitment platform that streamlines hiring through resume analysis, AI interview assistance, recruiter-student communication, and real-time video interviews using modern web technologies.",
+    features: [
+      "AI Resume Analysis & Job Matching",
+      "Integrated Video Interviews (Stream SDK)",
+      "Recruiter & Student Chat System",
+      "Authentication with Clerk & Background Jobs using Inngest",
+    ],
+    image: imagesearchLogo,
+    tags: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Clerk",
+      "Stream SDK",
+      "Inngest",
+      "Gemini AI",
+    ],
+    github: "https://github.com/AiResumeX/Talent-IQ",
+    webapp: "https://talentiq-demo.vercel.app",
+  },
+  {
+    id: 5,
+    title: "CampusRank",
+    category: "Full Stack",
+    description:
+      "CampusRank is a college result and ranking management platform built for MNNIT. It enables secure student authentication, automated CGPA and class rank generation, transcript management, and admin-controlled result publishing.",
+    features: [
+      "College Email Authentication & OTP Verification",
+      "Automated CGPA & Class Rank Generation",
+      "Transcript Upload & Result Management",
+      "Admin Dashboard for Student Records & Rankings",
+    ],
+    image: webverLogo,
+    tags: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Redux Toolkit",
+      "Tailwind CSS",
+    ],
+    github: "https://github.com/Mudit024/CampusRank",
+    webapp: "https://campusrank-demo.vercel.app",
   },
 ];
